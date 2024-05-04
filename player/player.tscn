@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://n5eh8uvucjxb"]
+[gd_scene load_steps=4 format=3 uid="uid://n5eh8uvucjxb"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_frdd5"]
+[ext_resource type="Texture2D" uid="uid://dn3ubqxhvqrn" path="res://assets/icon.svg" id="1_bwlta"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_hv5m6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5srli"]
+radius = 64.0
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(530, 303)
+script = ExtResource("1_hv5m6")
+MAX_SPEED = 700
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bwlta")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_frdd5")
+shape = SubResource("CircleShape2D_5srli")
