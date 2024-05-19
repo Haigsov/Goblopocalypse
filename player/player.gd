@@ -1,11 +1,18 @@
 extends CharacterBody2D
 
 
-@export var speed = 400
+@export var speed:int = 400
+var screen_size: Vector2
+
+func _ready():
+	screen_size = get_viewport_rect().size
+	var position = screen_size / 2
+	
+	
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = input_direction * speed
+	velocity = input_direction.normalized() * speed
 
 #func _input(event):
    ## Mouse in viewport coordinates.
@@ -21,55 +28,20 @@ func _physics_process(delta):
 	get_input()
 	move_and_slide()
 	#print(velocity)
-
-
-#@export var movement_speed = 500
-#
-#func _physics_process(delta):
-	#var motion = Vector2()
-	#
-	#if Input.is_action_pressed("move_up"):
-		#motion.y -= 1
-	#if Input.is_action_pressed("move_down"):
-		#motion.y += 1
-	#if Input.is_action_pressed("move_left"):
-		#motion.x -= 1
-	#if Input.is_action_pressed("move_right"):
-		#motion.x += 1
-		#
-	#motion = motion.normalized() * movement_speed * delta
-
-#@export var MAX_SPEED = 400
-#@export var ACCELERATION = 1000
-#@export var FRICTION = 800
-#
-#var input = Vector2.ZERO
-#
-#func _physics_process(delta):
-	#player_movement(delta)
-#
-#func get_input():
-	#input.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
-	#input.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
-	#return input.normalized()
-#
-#
-#func player_movement(delta):
-	#input = get_input()
-	#
-	#if input == Vector2.ZERO:
-		#apply_friction(FRICTION * delta)
-	#else:
-		#apply_movement(input * ACCELERATION * delta)
-	#move_and_slide()
-	#
-#
-#func apply_movement(amount) -> void:
-	#velocity += amount
-	#velocity = velocity.limit_length(MAX_SPEED)
-#
-#func apply_friction(amount) -> void:
-	#if velocity.length() > amount:
-		#velocity -= velocity.normalized() * amount
-	#else:
-		#velocity = Vector2.ZERO
+	
+	# Limit the player movement to the window
+	position = position.clamp(Vector2.ZERO, screen_size)
+	
+	# Player rotation
+	var mouse = get_local_mouse_position()
+	var angle = snappedf(mouse.angle(), PI/4) / (PI/4)
+	angle = wrapi(int(angle), 0, 8)
+	
+	$AnimatedSprite2D.animation = "walk" + str(angle)
+	
+	# Player Animation
+	if velocity.length() != 0:
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.frame = 1
