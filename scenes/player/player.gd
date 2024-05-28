@@ -6,7 +6,7 @@ var screen_size: Vector2
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	var position = screen_size / 2
+	#position = screen_size / 2
 	
 	
 
@@ -24,7 +24,7 @@ func get_input():
    ## Print the size of the viewport.
 	#print("Viewport Resolution is: ", get_viewport().get_visible_rect().size)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	move_and_slide()
 	#print(velocity)
