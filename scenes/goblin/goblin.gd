@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+
+@onready var player = get_node("/root/Main/Player")
 # checks whether Goblin has entered
 var entered : bool
 # goblin speed of movement
@@ -14,6 +16,7 @@ func _ready():
 	entered = false
 	# sees the (x,y) difference between centre of screen and where goblin is
 	var distance = screen_size.get_center() - position
+	# checks if it need to move horizontally or vertically
 	if abs(distance.x) > abs(distance.y):
 		direction.x = distance.x
 		direction.y = 0
@@ -22,7 +25,16 @@ func _ready():
 		direction.y = distance.y
 		
 func _physics_process(_delta):
+	# checks whether goblin has entered the arena or not
+	if entered:
+		# sets direction where player currently
+		direction = player.position - position
+	# makes sure it normalizes the speed
 	direction = direction.normalized()
 	velocity = speed * direction
 	move_and_slide()
 	
+
+
+func _on_timer_timeout():
+	entered = true
