@@ -28,6 +28,7 @@ func _ready():
 		direction.y = distance.y
 		
 func _physics_process(_delta):
+	$AnimatedSprite2D.animation = "run"
 	# checks whether goblin has entered the arena or not
 	if entered:
 		# sets direction where player currently
@@ -37,11 +38,13 @@ func _physics_process(_delta):
 	velocity = speed * direction
 	move_and_slide()
 	
+	if velocity.x != 0:
+		$AnimatedSprite2D.flip_h = velocity.x < 0
 
 
 func _on_timer_timeout():
 	entered = true
 
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	hit_player.emit()
