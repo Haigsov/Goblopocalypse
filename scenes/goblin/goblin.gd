@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 
 @onready var player = get_node("/root/Main/Player")
+
+signal hit_player
+
 # checks whether Goblin has entered
 var entered : bool
 # goblin speed of movement
@@ -38,3 +41,7 @@ func _physics_process(_delta):
 
 func _on_timer_timeout():
 	entered = true
+
+
+func _on_area_2d_body_entered(body):
+	hit_player.emit()
