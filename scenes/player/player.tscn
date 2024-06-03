@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://n5eh8uvucjxb"]
+[gd_scene load_steps=28 format=3 uid="uid://n5eh8uvucjxb"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_hv5m6"]
 [ext_resource type="Texture2D" uid="uid://cuqc22yiqcl0w" path="res://assets/tilemaps/tileset 3/player/E/player_E_1.png" id="2_5g1wp"]
@@ -22,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://tukpub11k3k8" path="res://assets/tilemaps/tileset 3/player/N/player_N_0.png" id="20_0ewba"]
 [ext_resource type="Texture2D" uid="uid://bt6cjw2c1cna0" path="res://assets/tilemaps/tileset 3/player/N/player_N_1.png" id="21_0pa8t"]
 [ext_resource type="Texture2D" uid="uid://dtqjlj618msbo" path="res://assets/tilemaps/tileset 3/player/N/player_N_2.png" id="22_nbr3w"]
+[ext_resource type="Texture2D" uid="uid://cc8njfca4kqub" path="res://assets/tilemaps/tileset 3/player/NE/player_NE_0.png" id="23_yychm"]
+[ext_resource type="Texture2D" uid="uid://b31weigfh46eg" path="res://assets/tilemaps/tileset 3/player/NE/player_NE_1.png" id="24_haiaf"]
+[ext_resource type="Texture2D" uid="uid://fb7lhnp8wvnt" path="res://assets/tilemaps/tileset 3/player/NE/player_NE_2.png" id="25_yyvym"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eolfq"]
 animations = [{
@@ -146,16 +149,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_5ubis")
+"texture": ExtResource("23_yychm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_5g1wp")
+"texture": ExtResource("24_haiaf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ubpw0")
+"texture": ExtResource("25_yyvym")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_5g1wp")
+"texture": ExtResource("24_haiaf")
 }],
 "loop": true,
 "name": &"walk7",
@@ -166,6 +169,7 @@ animations = [{
 size = Vector2(15.8333, 19.8333)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 position = Vector2(530, 303)
 collision_layer = 2
 collision_mask = 17
@@ -179,3 +183,7 @@ animation = &"walk7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_yh55b")
+
+[node name="ShotTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
