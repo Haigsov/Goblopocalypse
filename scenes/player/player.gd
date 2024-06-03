@@ -1,28 +1,27 @@
 extends CharacterBody2D
 
 
-@export var speed:int = 400
+signal shoot
+
+@export var speed : int
+var can_shoot:bool
 var screen_size: Vector2
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	#position = screen_size / 2
-	
-	
+	position = screen_size / 2
+	speed = 200
+	can_shoot = true
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction.normalized() * speed
-
-#func _input(event):
-   ## Mouse in viewport coordinates.
-	#if event is InputEventMouseButton:
-		#print("Mouse Click/Unclick at: ", event.position)
-	#elif event is InputEventMouseMotion:
-		#print("Mouse Motion at: ", event.position)
-#
-   ## Print the size of the viewport.
-	#print("Viewport Resolution is: ", get_viewport().get_visible_rect().size)
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and can_shoot:
+		var direction = get_global_mouse_position() - position
+		shoot.emit(position, direction)
+		can_shoot = false
+		$ShotTimer.start()
 
 func _physics_process(_delta):
 	get_input()
@@ -45,3 +44,7 @@ func _physics_process(_delta):
 	else:
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.frame = 1
+
+
+func _on_shot_timer_timeout():
+	can_shoot = true
