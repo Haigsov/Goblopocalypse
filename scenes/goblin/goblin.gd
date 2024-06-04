@@ -43,8 +43,7 @@ func _physics_process(_delta):
 		
 		if velocity.x != 0:
 			$AnimatedSprite2D.flip_h = velocity.x < 0
-	else:
-		pass
+	
 
 func die():
 	alive = false

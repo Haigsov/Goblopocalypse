@@ -17,6 +17,7 @@ config/icon="res://assets/icon.svg"
 
 [display]
 
+window/size/viewport_width=1172
 window/size/resizable=false
 
 [input]

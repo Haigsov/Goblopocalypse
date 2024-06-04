@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctrw3biqtf0l2"]
+
+[ext_resource type="Texture2D" uid="uid://txysa54jrj7j" path="res://assets/tilemaps/tileset 3/items/heart.png" id="1_13w4u"]
+[ext_resource type="Texture2D" uid="uid://dpj0bd1ba6sm8" path="res://assets/tilemaps/tileset 3/enemies/goblin/goblin_idle_anim_f0.png" id="2_hyakj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5qwl"]
+border_width_top = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1172.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i5qwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(25, 25)
+scale = Vector2(3, 3)
+texture = ExtResource("1_13w4u")
+
+[node name="LivesLabel" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 2.0
+offset_right = 115.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 30
+text = "X 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1078, 16)
+scale = Vector2(3, 3)
+texture = ExtResource("2_hyakj")
+
+[node name="EnemiesLabel" type="Label" parent="."]
+offset_left = 1097.0
+offset_top = 3.0
+offset_right = 1168.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 30
+text = "X 10"
+horizontal_alignment = 1
+vertical_alignment = 1
