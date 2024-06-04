@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgu5f0nvmryxl"]
+[gd_scene load_steps=8 format=3 uid="uid://bgu5f0nvmryxl"]
 
 [ext_resource type="PackedScene" uid="uid://doj8ap6bhfs1f" path="res://tile_map/tile_map.tscn" id="1_jy3bk"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_wdgj3"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://drxon6bxqwv8w" path="res://scenes/enemy spawner/enemy_spawner.tscn" id="3_xjfd2"]
 [ext_resource type="Script" path="res://scenes/main/BulletManager.gd" id="4_8slni"]
 [ext_resource type="PackedScene" uid="uid://m1v2v003wfco" path="res://scenes/bullet/bullet.tscn" id="5_inuri"]
+[ext_resource type="PackedScene" uid="uid://ctrw3biqtf0l2" path="res://scenes/hud/hud.tscn" id="7_twtoe"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_wdgj3")
@@ -20,9 +21,9 @@ bullet_scene = ExtResource("5_inuri")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_xjfd2")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(604, 329)
-zoom = Vector2(0.75, 0.75)
+[node name="HUD" parent="." instance=ExtResource("7_twtoe")]
+offset = Vector2(0, 600)
+transform = Transform2D(1, 0, 0, 1, 0, 600)
 
 [connection signal="shoot" from="Player" to="BulletManager" method="_on_player_shoot"]
 [connection signal="hit_p" from="EnemySpawner" to="." method="_on_enemy_spawner_hit_p"]
