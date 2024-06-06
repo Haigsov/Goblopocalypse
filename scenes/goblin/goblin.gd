@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-
+@onready var main = get_node("/root/Main")
 @onready var player = get_node("/root/Main/Player")
+
+var item_scene = preload("res://scenes/item/item.tscn")
 
 signal hit_player
 
@@ -50,6 +52,15 @@ func die():
 	$AnimatedSprite2D.stop()
 	$AnimatedSprite2D.animation = "dead"
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	drop_item()
+
+
+
+func drop_item():
+	var item = item_scene.instantiate()
+	item.position = position
+	main.call_deferred("add_child", item)
+	item.add_to_group("items")
 
 func _on_timer_timeout():
 	entered = true
