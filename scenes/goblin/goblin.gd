@@ -59,6 +59,7 @@ func die():
 func drop_item():
 	var item = item_scene.instantiate()
 	item.position = position
+	item.item_type = randi_range(0, 2)
 	main.call_deferred("add_child", item)
 	item.add_to_group("items")
 
