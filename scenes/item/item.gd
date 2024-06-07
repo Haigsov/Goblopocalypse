@@ -1,5 +1,7 @@
 extends Area2D
 
+
+
 var item_type : int #0 coffee, #1 health, #2 gun
 
 var coffee_box := preload("res://assets/tilemaps/tileset 3/items/coffee_box.png")
@@ -13,4 +15,15 @@ func _ready():
 	$Sprite2D.texture = item_textures[item_type]
 
 func _on_body_entered(body):
-	pass # Replace with function body.
+	#coffee
+	if item_type == 0:
+		body.boost()
+	#health
+	elif item_type == 1:
+		pass
+	#gun
+	elif item_type == 2:
+		pass
+
+	#delete item
+	queue_free()
