@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var main = get_node("/root/Main")
 @onready var player = get_node("/root/Main/Player")
 
+var explosion_scene = preload("res://scenes/explosion/explosion.tscn")
 var item_scene = preload("res://scenes/item/item.tscn")
 
 signal hit_player
@@ -14,6 +15,7 @@ var alive: bool
 var speed : int = 100
 # keeps track of goblin's direction
 var direction : Vector2
+const DROP_CHANCE : float = 0.15
 
 func _ready():
 	# shows game window's screen size
@@ -52,7 +54,12 @@ func die():
 	$AnimatedSprite2D.stop()
 	$AnimatedSprite2D.animation = "dead"
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
-	drop_item()
+	if randf() <= DROP_CHANCE:
+		drop_item()
+	var explosion = explosion_scene.instantiate()
+	explosion.position = position
+	main.add_child(explosion)
+	explosion.process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 
