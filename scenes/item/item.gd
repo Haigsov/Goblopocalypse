@@ -5,9 +5,9 @@ extends Area2D
 @onready var LivesLabel = get_node("/root/Main/HUD/LivesLabel")
 var item_type : int #0 coffee, #1 health, #2 gun
 
-var coffee_box := preload("res://assets/tilemaps/tileset 3/items/coffee_box.png")
-var health_box := preload("res://assets/tilemaps/tileset 3/items/health_box.png")
-var gun_box := preload("res://assets/tilemaps/tileset 3/items/gun_box.png")
+var coffee_box := preload("res://assets/tilemaps/tileset/items/coffee_box.png")
+var health_box := preload("res://assets/tilemaps/tileset/items/health_box.png")
+var gun_box := preload("res://assets/tilemaps/tileset/items/gun_box.png")
 
 var item_textures := [coffee_box, health_box, gun_box]
 

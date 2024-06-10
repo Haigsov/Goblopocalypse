@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqxh6budjvbjy"
-path="res://.godot/imported/gun_box.png-27254cf3480af842181899330d1bcfd6.ctex"
+path="res://.godot/imported/gun_box.png-f4021f276a24b1b3d9530b347c2b1329.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemaps/tileset 3/items/gun_box.png"
-dest_files=["res://.godot/imported/gun_box.png-27254cf3480af842181899330d1bcfd6.ctex"]
+source_file="res://assets/tilemaps/tileset/items/gun_box.png"
+dest_files=["res://.godot/imported/gun_box.png-f4021f276a24b1b3d9530b347c2b1329.ctex"]
 
 [params]
 

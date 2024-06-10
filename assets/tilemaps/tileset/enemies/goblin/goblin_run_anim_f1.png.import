@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dasobk16s1fun"
-path="res://.godot/imported/goblin_run_anim_f1.png-ff8e03b9b73e86ce88105a3f35361800.ctex"
+path="res://.godot/imported/goblin_run_anim_f1.png-20c9235a858d801fd4e1e9fc88f6d30c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemaps/tileset 3/enemies/goblin/goblin_run_anim_f1.png"
-dest_files=["res://.godot/imported/goblin_run_anim_f1.png-ff8e03b9b73e86ce88105a3f35361800.ctex"]
+source_file="res://assets/tilemaps/tileset/enemies/goblin/goblin_run_anim_f1.png"
+dest_files=["res://.godot/imported/goblin_run_anim_f1.png-20c9235a858d801fd4e1e9fc88f6d30c.ctex"]
 
 [params]
 
