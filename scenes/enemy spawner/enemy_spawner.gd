@@ -1,39 +1,45 @@
 extends Node2D
 
+# Get a reference to the main node in the scene tree
 @onready var main = get_node("/root/Main")
 
+# Define a signal to emit when a hit occurs
 signal hit_p
-#preloads the goblin scene in the scene
+
+# Preload the goblin scene for instantiation
 var goblin_scene := preload("res://scenes/goblin/goblin.tscn")
-#an empty to store all the spawn points later
+
+# Array to store all the spawn points
 var spawn_points : Array[Marker2D] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#looping through all the children in EnemySpawner scene
+	# Loop through all children of the EnemySpawner node
 	for i in get_children():
-		#puts the enemy spawn points one by one
+		# Add any Marker2D nodes to the spawn_points array
 		if i is Marker2D:
 			spawn_points.append(i)
 
-
-
+# Called when the timer times out
 func _on_timer_timeout():
-	
+	# Get a list of all nodes in the 'enemies' group
 	var enemies = get_tree().get_nodes_in_group("enemies")
+	# Check if the number of enemies is less than the maximum allowed
 	if enemies.size() < get_parent().max_enemies:
-		#picks a random spawn point from the array
+		# Pick a random spawn point from the spawn_points array
 		var spawn := spawn_points[randi() % spawn_points.size()]
-		#spawns goblin in
+		# Instantiate a new goblin from the preloaded scene
 		var goblin := goblin_scene.instantiate()
-		#puts it at the same position of the spawn point
+		# Set the goblin's position to the spawn point's position
 		goblin.position = spawn.position
-		#emit hit signal
+		# Connect the goblin's hit_player signal to the hit function
 		goblin.hit_player.connect(hit)
-		#adds goblin to main
+		# Add the goblin to the main node
 		main.add_child(goblin)
+		# Add the goblin to the 'enemies' group
 		goblin.add_to_group("enemies")
-	
 
+# Function to handle hit events
 func hit():
+	# Emit the hit_p signal
 	hit_p.emit()
