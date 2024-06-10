@@ -16,6 +16,8 @@ var speed : int = 100
 # keeps track of goblin's direction
 var direction : Vector2
 const DROP_CHANCE : float = 0.15
+# determines whether a goblin is a special kind
+var special_goblin_chance : float
 
 func _ready():
 	# shows game window's screen size
@@ -23,6 +25,7 @@ func _ready():
 	# specifies that goblin still hasn't entered the visible game window
 	entered = false
 	alive = true
+	special_goblin_chance = randf()
 	# sees the (x,y) difference between centre of screen and where goblin is
 	var distance = screen_size.get_center() - position
 	# checks if it need to move horizontally or vertically
@@ -42,6 +45,8 @@ func _physics_process(_delta):
 			direction = player.position - position
 		# makes sure it normalizes the speed
 		direction = direction.normalized()
+		if special_goblin_chance <= 0.2:
+			speed = 300
 		velocity = speed * direction
 		move_and_slide()
 		

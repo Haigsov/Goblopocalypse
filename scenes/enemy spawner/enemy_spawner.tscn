@@ -29,6 +29,12 @@ position = Vector2(1224, 213)
 [node name="Marker2D8" type="Marker2D" parent="."]
 position = Vector2(1224, 481)
 
+[node name="Marker2D9" type="Marker2D" parent="."]
+position = Vector2(-57, 480)
+
+[node name="Marker2D10" type="Marker2D" parent="."]
+position = Vector2(-59, 202)
+
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
